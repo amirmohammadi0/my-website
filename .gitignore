@@ -1,0 +1,5 @@
+Dockerfile
+__pycache__/
+db/__pycache__/
+router/__pycache__/
+mydatabase.db

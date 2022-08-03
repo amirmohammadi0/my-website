@@ -1,0 +1,8 @@
+fastapi
+sqlalchemy
+ormar
+databases
+pydantic
+pillow
+uvicorn
+python-multipart
