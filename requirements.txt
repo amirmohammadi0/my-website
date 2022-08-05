@@ -6,3 +6,6 @@ pydantic
 pillow
 uvicorn
 python-multipart
+jose
+python-jose
+jwt
