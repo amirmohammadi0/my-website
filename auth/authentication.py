@@ -6,7 +6,6 @@ from sqlalchemy.orm.session import Session
 from fastapi.exceptions import HTTPException
 from auth import oauth2
 
-
 router = APIRouter(tags=['auth'])
 
 @router.post('/token')
