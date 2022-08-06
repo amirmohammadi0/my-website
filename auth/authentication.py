@@ -5,8 +5,9 @@ from fastapi.security.oauth2 import OAuth2PasswordRequestForm
 from sqlalchemy.orm.session import Session
 from fastapi.exceptions import HTTPException
 from auth import oauth2
+from db._hash import Hash
 
-router = APIRouter(tags=['auth'])
+router = APIRouter(tags=['authentication'])
 
 @router.post('/token')
 def get_token(request:OAuth2PasswordRequestForm=Depends(),db:Session=Depends(get_db)):
@@ -14,7 +15,7 @@ def get_token(request:OAuth2PasswordRequestForm=Depends(),db:Session=Depends(get
     access_token = oauth2.create_access_token(data={'sub':user.username})
     if not user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='not found user')
-    elif user.password != request.password:
+    elif not Hash.verify(user.password,request.password):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='invalid password')
     else:
         return {
